@@ -1,0 +1,555 @@
+/* --- Variables & Reset --- */
+:root {
+    --primary-color: #0f4c3a;     /* Hijau Gelap Elegan */
+    --primary-light: #166e54;
+    --accent-color: #c5a880;      /* Emas Lembut */
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --bg-light: #fdfdfc;
+    --white: #ffffff;
+    
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    line-height: 1.6;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+/* --- Navbar --- */
+#navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    /* Hitam dengan Opacity 20% saat di Beranda */
+    background-color: rgba(0, 0, 0, 0.2) !important; 
+    padding: 20px 0;
+    transition: all 0.4s ease; /* Diperlambat sedikit agar perubahannya lebih smooth */
+    z-index: 1000;
+}
+
+/* Kelas ini akan ditempelkan otomatis oleh Javascript saat di-scroll */
+#navbar.scrolled {
+    /* Hitam dengan Opacity 70% saat masuk Layanan */
+    background-color: rgba(0, 0, 0, 0.7) !important; 
+    padding: 15px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Tambahan bayangan agar terpisah dari background putih */
+    backdrop-filter: blur(10px); /* Efek kaca elegan */
+}
+
+/* Saat halaman di-scroll ke bawah */
+
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--white);
+    cursor: pointer;
+}
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white); /* Teks logo diubah menjadi putih */
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--white); /* Teks menu diubah menjadi putih */
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+#navbar.scrolled .nav-links a {
+    color: var(--white); /* Memastikan teks tetap putih saat di-scroll */
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+/* --- Tombol "Hubungi Saya" di Navbar (Elegan & Solid) --- */
+.btn-outline {
+    background-color: var(--accent-color); /* Menggunakan warna emas solid */
+    color: var(--white) !important; /* Teks warna putih */
+    padding: 10px 24px;
+    border-radius: 30px; /* Bentuk kapsul/pil yang elegan */
+    border: none; /* Menghilangkan garis outline yang kaku */
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(197, 168, 128, 0.3); /* Bayangan emas halus */
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background-color: #b09571; /* Emas yang sedikit lebih gelap saat disentuh */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(197, 168, 128, 0.45); /* Pancaran bayangan membesar */
+    color: var(--white) !important;
+}
+
+/* --- Hero Section --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(rgba(15, 76, 58, 0.9), rgba(15, 76, 58, 0.95)), 
+                url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+    color: var(--white);
+    text-align: center;
+    padding-top: 60px;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.subtitle {
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.hero h2 {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #e5e7eb;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.description {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    color: #d1d5db;
+}
+
+.highlight {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--accent-color);
+    font-weight: 500;
+    font-style: italic;
+    border-top: 1px solid rgba(197, 168, 128, 0.3);
+    border-bottom: 1px solid rgba(197, 168, 128, 0.3);
+    padding: 8px 20px;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--white);
+    padding: 15px 35px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #b09571;
+    transform: translateY(-2px);
+}
+/* --- Elegant Values Styling (Hero Section) --- */
+.elegant-values-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 10px auto 40px;
+    padding: 12px 30px;
+    background: rgba(15, 76, 58, 0.5); /* Latar hijau gelap transparan */
+    border: 1px solid rgba(197, 168, 128, 0.4); /* Garis bingkai emas tipis */
+    border-radius: 50px; /* Bentuk melengkung elegan mirip kapsul */
+    backdrop-filter: blur(8px); /* Efek blur kaca yang modern */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.elegant-value {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #e5e7eb; /* Putih keabu-abuan agar tidak menyilaukan */
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.elegant-value .fw-bold {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-style: italic;
+    color: var(--accent-color); /* Warna emas murni untuk hashtag */
+    font-size: 1.1rem;
+}
+
+.elegant-value i {
+    color: var(--accent-color);
+    font-size: 1rem;
+}
+
+.value-line {
+    height: 24px;
+    width: 1px;
+    background-color: rgba(197, 168, 128, 0.3); /* Garis pemisah emas yang samar */
+}
+
+/* 1. Menerapkan animasi ke teks dan garis pemisah */
+.elegant-value, .value-line {
+    opacity: 0; /* Memaksa elemen bersembunyi di awal */
+    animation: animasiDomino 7s infinite ease-in-out; 
+}
+
+/* 2. Mengatur jeda (delay) agar muncul satu per satu (selisih 0.4 detik) */
+.elegant-values-container > :nth-child(1) { animation-delay: 0s; }    /* Tanpa #Riba */
+.elegant-values-container > :nth-child(2) { animation-delay: 0.4s; }  /* Garis Pemisah */
+.elegant-values-container > :nth-child(3) { animation-delay: 0.8s; }  /* Tanpa #Gharar */
+.elegant-values-container > :nth-child(4) { animation-delay: 1.2s; }  /* Garis Pemisah */
+.elegant-values-container > :nth-child(5) { animation-delay: 1.6s; }  /* Tanpa #Dzolim */
+
+/* 3. Skenario Gerak Animasi (Keyframes) */
+@keyframes animasiDomino {
+    0% { 
+        opacity: 0; 
+        transform: translateY(20px); /* Memulai dari bawah */
+    }
+    15% { 
+        opacity: 1; 
+        transform: translateY(0); /* Tampil penuh ke posisi awal */
+    }
+    70% { 
+        opacity: 1; 
+        transform: translateY(0); /* Bertahan diam selama beberapa detik agar bisa dibaca */
+    }
+    85% { 
+        opacity: 0; 
+        transform: translateY(-20px); /* Menghilang bergerak ke atas */
+    }
+    100% { 
+        opacity: 0; 
+        transform: translateY(-20px); 
+    }
+}
+/* --- Services Section --- */
+.services {
+    padding: 100px 0;
+    background-color: #f9f9f6; /* Mengubah background section sedikit off-white agar card putih lebih menonjol */
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.divider {
+    height: 3px;
+    width: 60px;
+    background-color: var(--accent-color);
+    margin: 15px auto 0;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: var(--white);
+    padding: 40px 30px;
+    text-align: center;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    /* PERBAIKAN: Menghindari 'all' dan menulis spesifik properti yang dianimasikan agar browser tidak crash */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
+    cursor: pointer;
+}
+
+/* === EFEK SAAT KURSOR DI ATASNYA (HOVER) === */
+.service-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-color);
+    /* PERBAIKAN: Menggunakan warna solid yang sangat lembut, BUKAN linear-gradient */
+    background-color: #fdfcf9; 
+    box-shadow: 0 20px 40px rgba(197, 168, 128, 0.25); 
+}
+
+/* === EFEK SAAT KARTU DI-PENCET / DI-KLIK (ACTIVE) === */
+.service-card:active {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(197, 168, 128, 0.3);
+    background-color: #f7f4ec;
+}
+
+/* Animasi Tambahan untuk Ikon di dalam kartu */
+.service-card .icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    /* PERBAIKAN: Menghindari 'all' pada ikon */
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.service-card:hover .icon {
+    color: var(--accent-color);
+    transform: scale(1.12);
+}
+
+.service-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.service-card p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+/* --- Footer --- */
+.footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 60px 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 40px;
+}
+
+.footer-info h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+}
+
+.footer-info p {
+    font-size: 0.9rem;
+    color: #9ca3af;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255,255,255,0.1);
+    color: var(--white);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.social-links a:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #9ca3af;
+}
+/* --- Hamburger Menu Icon --- */
+.menu-toggle {
+    display: none; /* Disembunyikan di layar besar */
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* --- Responsive Design dengan Hamburger Menu --- */
+/* --- Responsive Design dengan Hamburger Menu --- */
+@media (max-width: 768px) {
+    .nav-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    /* 1. REVISI: Navbar Menu HP - Agak Transparan (30%) */
+    .nav-links {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.2) !important; /* 0.3 = 30% transparan */
+        backdrop-filter: blur(3px); /* Sedikit efek kaca agar teks tidak bentrok dengan background */
+        padding: 20px 0 30px;
+        gap: 25px;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        
+        /* Logika Animasi Sembunyi */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+    }
+
+    .nav-links a {
+        font-size: 1rem;
+    }
+
+    /* Kembalikan Hero ke kondisi aman */
+    .hero {
+        padding-top: 120px !important; 
+        min-height: 100vh;
+        height: auto;
+        display: flex;
+        align-items: center; 
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    /* 2. REVISI: Posisi Tombol Konsultasi Sekarang */
+    .hero-buttons {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 60px; /* Margin bawah ini mencegah tombol turun sampai dasar layar HP */
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+/* Responsivitas tambahan untuk layar HP yang lebih sempit */
+@media (max-width: 600px) {
+    .elegant-values-container {
+        flex-direction: column; 
+        border-radius: 20px;
+        padding: 20px;
+        background: rgba(15, 76, 58, 0.75);
+    }
+    .value-line {
+        height: 1px;
+        width: 60px;
+        margin: 5px 0;
+    }
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+}
+/* Responsivitas tambahan untuk layar HP yang lebih sempit */
+@media (max-width: 600px) {
+    .elegant-values-container {
+        flex-direction: column; 
+        border-radius: 20px;
+        padding: 20px;
+        background: rgba(15, 76, 58, 0.75);
+    }
+
+    .value-line {
+        height: 1px;
+        width: 60px;
+        margin: 5px 0;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+}
+/* Responsivitas tambahan untuk layar HP kecil */
+@media (max-width: 600px) {
+    .elegant-values-container {
+        flex-direction: column;
+        border-radius: 20px;
+        padding: 20px;
+        background: rgba(15, 76, 58, 0.75);
+    }
+    .value-line {
+        height: 1px;
+        width: 60px;
+        margin: 5px 0;
+    }
+}
+
